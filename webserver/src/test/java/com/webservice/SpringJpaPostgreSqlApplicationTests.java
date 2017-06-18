@@ -1,6 +1,5 @@
 package com.webservice;
 
-import com.webservice.handler.EnvironmentCheck;
 import com.webservice.handler.SystemSettings;
 import com.utils.ResourcesHandler;
 import org.junit.Test;
