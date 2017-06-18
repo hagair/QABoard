@@ -9,10 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class WebController {
-	@Autowired
 
 	SystemSettings systemSettings;
-
 	@RequestMapping("/settings")
 	public String settingComperatorHTML(@RequestParam("scrum") String scrum){
 		if (scrum.equals(null)) {

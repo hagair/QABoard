@@ -3,6 +3,7 @@ package com.webservice.handler;
 import com.settings.SystemSettings.SystemSettingDiff;
 import com.settings.model.SettingKey;
 import com.utils.ResourcesHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,8 +14,8 @@ import java.util.Set;
  * Created by hagairevah on 6/12/17.
  */
 public class SystemSettings {
+    @Autowired
     String scrum;
-
     public SystemSettings(String scrum) {
         this.scrum = scrum;
     }
