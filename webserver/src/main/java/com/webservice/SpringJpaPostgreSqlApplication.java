@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpringJpaPostgreSqlApplication {
 
 	public static void main(String[] args) {
-			//ResourcesHandler.setPath("debug");
+			ResourcesHandler.setPath("debug");
 		SpringApplication.run(SpringJpaPostgreSqlApplication.class, args);
 	}
 }
