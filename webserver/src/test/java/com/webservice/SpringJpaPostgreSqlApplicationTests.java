@@ -1,6 +1,8 @@
 package com.webservice;
 
 import com.google.gson.Gson;
+import com.settings.SystemSettings.SystemSettingDiff;
+import com.settings.model.SettingKey;
 import com.settings.model.SettingKeyValidation;
 import com.webservice.handler.SystemSettings;
 import com.utils.ResourcesHandler;
@@ -8,6 +10,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -27,7 +32,7 @@ public class SpringJpaPostgreSqlApplicationTests {
 	@Test
 	public void loadfrompropfile(){
 //		ResourcesHandler.setPath("debug");
-		ResourcesHandler.loadPropertyFileToMap("settings_values.properties");
+		ResourcesHandler.loadPropertyFileToMap("settings_values_scrum12.properties");
 	}
 	@Test
 	public void testSettingKeyValidationObject(){
@@ -47,6 +52,13 @@ public class SpringJpaPostgreSqlApplicationTests {
 		//to json
 		System.out.println(gson.toJson(settingKeyValidation));
 
+	}
+	@Test
+	public void testProductionReplica(){
+		SystemSettingDiff systemSettingDiff = new SystemSettingDiff();
+		ArrayList<HashMap<String,SettingKey>> ss = systemSettingDiff.getDiffsFromAllScrumCountries("scrum10");
+
+		System.out.println();
 	}
 
 

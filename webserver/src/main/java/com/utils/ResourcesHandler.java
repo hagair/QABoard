@@ -44,6 +44,7 @@ public class ResourcesHandler {
         return list;
     }
     public static String loadTxtFile(String filename) {
+        System.out.println("loading test file from: "+path+innerpath+filename);
         File file = new File(path+innerpath+filename);
         StringBuilder fileContents = new StringBuilder((int)file.length());
         Scanner scanner;
@@ -65,6 +66,7 @@ public class ResourcesHandler {
     public static Map<String,String> loadPropertyFileToMap(String filename) {
         FileInputStream fis;
         try {
+            System.out.printf("load property from: "+path+innerpath+filename);
             fis = new FileInputStream(path+innerpath+filename);
             ResourceBundle resources = new PropertyResourceBundle(fis);
             Map<String,String> map = new HashMap<String,String>();

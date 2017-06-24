@@ -25,10 +25,10 @@ public class WebController {
 			scrum = "scrum12";
 		}
 		systemSettings = new SystemSettings(scrum);
-		ResourcesHandler.printPath();
+//		ResourcesHandler.printPath();
 		String  html = ResourcesHandler.loadTxtFile("home.html");
 		String response = html.replace("##scrum",scrum);
-		response = response.replace("##table",systemSettings.getSettingsTableHTML("settings_values.properties"));
+		response = response.replace("##table",systemSettings.getSettingsTableHTML("settings_values_"+scrum+".properties"));
 		return response;
 	}
 
@@ -41,7 +41,7 @@ public class WebController {
 		}
 		systemSettings = new SystemSettings(scrum);
 		ResourcesHandler.printPath();
-		ArrayList<SettingKeyValidation> settingKeyValidationArrayList = systemSettings.getSettingsTableJSON("settings_values.properties");
+		ArrayList<SettingKeyValidation> settingKeyValidationArrayList = systemSettings.getSettingsTableJSON("settings_values_scrum12.properties");
 		String response = gson.toJson(settingKeyValidationArrayList);
 		return response;
 	}

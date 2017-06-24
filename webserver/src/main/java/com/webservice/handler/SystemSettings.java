@@ -23,7 +23,7 @@ public class SystemSettings {
     }
     public String getSettingsTableHTML(String filename){
         SystemSettingDiff systemSettingDiff = new SystemSettingDiff();
-        ArrayList<HashMap<String,SettingKey>> ss = systemSettingDiff.getDiffsFromAllCountries(scrum);
+        ArrayList<HashMap<String,SettingKey>> ss = systemSettingDiff.getDiffsFromAllScrumCountries(scrum);
         ArrayList<SettingKeyValidation> settingKeyValidationArrayList = getSettingKeyValidationList(ss,filename);
 
         return settingTableCreatorByList(settingKeyValidationArrayList);
@@ -31,7 +31,7 @@ public class SystemSettings {
 
     public ArrayList<SettingKeyValidation> getSettingsTableJSON(String filename){
         SystemSettingDiff systemSettingDiff = new SystemSettingDiff();
-        ArrayList<HashMap<String,SettingKey>> ss = systemSettingDiff.getDiffsFromAllCountries(scrum);
+        ArrayList<HashMap<String,SettingKey>> ss = systemSettingDiff.getDiffsFromAllScrumCountries(scrum);
 
         return getSettingKeyValidationList(ss,filename);
     }
