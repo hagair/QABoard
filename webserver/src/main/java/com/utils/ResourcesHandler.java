@@ -63,6 +63,18 @@ public class ResourcesHandler {
         }
     }
 
+    public static void writeMapToPropertyFile(String filename, Map<String,String> keyMap) throws IOException {
+        BufferedWriter output = null;
+        File file = new File(path+innerpath+filename);
+        output = new BufferedWriter(new FileWriter(file));
+        Set<String> mapSet = keyMap.keySet();
+        for (String s : mapSet) {
+            output.write(s+"="+keyMap.get(s));
+            output.newLine();
+        }
+        output.close();
+
+    }
     public static Map<String,String> loadPropertyFileToMap(String filename) {
         FileInputStream fis;
         try {

@@ -11,8 +11,11 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -60,7 +63,17 @@ public class SpringJpaPostgreSqlApplicationTests {
 
 		System.out.println();
 	}
-
+	@Test
+	public void testWriteMapToFile() throws IOException {
+//		ResourcesHandler.setPath("debug");
+		Map<String, String> getProp = ResourcesHandler.loadPropertyFileToMap("propTest.properties");
+		getProp.put("use_supply_gateway","0");
+		ResourcesHandler.writeMapToPropertyFile("propTest.properties",getProp);
+		Set<String> mapSet = getProp.keySet();
+		for (String s : mapSet) {
+			System.out.println(s+"  =  "+getProp.get(s));
+		}
+	}
 
 
 

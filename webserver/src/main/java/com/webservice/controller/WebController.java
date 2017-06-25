@@ -1,6 +1,7 @@
 package com.webservice.controller;
 
 import com.google.gson.Gson;
+import com.settings.SystemSettings.ChangeSystemSetting;
 import com.settings.model.SettingKeyValidation;
 import com.webservice.handler.SystemSettings;
 import com.utils.ResourcesHandler;
@@ -44,6 +45,21 @@ public class WebController {
 		ArrayList<SettingKeyValidation> settingKeyValidationArrayList = systemSettings.getSettingsTableJSON("settings_values_scrum12.properties");
 		String response = gson.toJson(settingKeyValidationArrayList);
 		return response;
+	}
+	@RequestMapping("/settings/changeExpectedValue")
+	public String changeSettingValue(@RequestParam("scrum") String scrum,
+									 @RequestParam("key") String key,
+									 @RequestParam("value") String value){
+		if (scrum.equals(null)) {
+			scrum = "scrum12";
+		}
+		ChangeSystemSetting changeSystemSetting = new ChangeSystemSetting();
+		try {
+			String oldValue = changeSystemSetting.changeSystemSettingValue("settings_values_"+scrum+".properties", key, value);
+			return "Setting changed from: "+oldValue+" to "+value;
+		} catch (Exception e){
+			return "Setting changed failed!";
+		}
 	}
 }
 

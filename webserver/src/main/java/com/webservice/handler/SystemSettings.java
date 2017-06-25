@@ -47,7 +47,7 @@ public class SystemSettings {
         int i = 0;
         for (String key : set) {
             i++;
-            System.out.println(i);
+//            System.out.println(i);
             SettingKeyValidation settingKeyValidation = new SettingKeyValidation();
             settingKeyValidation.setModule(list.get(0).get(key).getModule());
             settingKeyValidation.setKey(list.get(0).get(key).getKey());
