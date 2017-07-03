@@ -19,7 +19,7 @@ public class WebController {
 	SystemSettings systemSettings;
 	Gson gson;
 
-	@CrossOrigin(origins = "http://localhost:8090")
+	@CrossOrigin(origins = "http://localhost:8080")
 	@RequestMapping("/settings")
 	public String settingComperatorHTML(@RequestParam("scrum") String scrum){
 		if (scrum.equals(null)) {
@@ -33,7 +33,7 @@ public class WebController {
 		return response;
 	}
 
-	@CrossOrigin(origins = "http://localhost:8090")
+	@CrossOrigin(origins = "http://localhost:8080")
 	@RequestMapping("/settingsJ")
 	public String settingComperatorJSON(@RequestParam("scrum") String scrum){
 		gson = new Gson();
@@ -44,7 +44,8 @@ public class WebController {
 		ResourcesHandler.printPath();
 		ArrayList<SettingKeyValidation> settingKeyValidationArrayList = systemSettings.getSettingsTableJSON("settings_values_scrum12.properties");
 		String response = gson.toJson(settingKeyValidationArrayList);
-		return response;
+		return "{\n" +
+				"  \"settings\":"+response+"}";
 	}
 	@RequestMapping("/settings/changeExpectedValue")
 	public String changeSettingValue(@RequestParam("scrum") String scrum,

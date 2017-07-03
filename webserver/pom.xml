@@ -5,11 +5,11 @@
 
 	<groupId>com.springjpa</groupId>
 	<artifactId>webserver</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
 	<name>webserver</name>
-	<description>Demo project for Spring Boot JPA - PostgreSQL</description>
+	<description>QAboard</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
