@@ -7,14 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.webservice.model.Customer;
-import com.webservice.repo.CustomerRepository;
+//import com.webservice.model.Customer;
+//import com.webservice.repo.CustomerRepository;
 import com.webservice.handler.EnvironmentCheck;
 
 @RestController
 public class WebController {
-	@Autowired
-	CustomerRepository repository;
+//	CustomerRepository repository;
 	EnvironmentCheck environmentCheck = new EnvironmentCheck();
 	SystemSettings systemSettings;
 

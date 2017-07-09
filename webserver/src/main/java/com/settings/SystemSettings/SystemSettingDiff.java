@@ -14,7 +14,7 @@ import javafx.util.Pair;
 public class SystemSettingDiff {
     //Data members
     private String scrum;
-    private String url = "jdbc:mysql://scrum-rds.gett.qa:3306/";
+    private String url = "jdbc:mysql://scrum-rds.gett.io:3306/";
     private String replicaCloneProductionUrl = "jdbc:mysql://gt-country-cloned-com.settings.db.gtforge.com/gettaxi_country_production";
     private String replicaCloneProductionUser = "automation";
     private String replicaCloneProductionPassword = "Auto!@2016";

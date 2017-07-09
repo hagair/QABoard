@@ -17,7 +17,7 @@ public class EnvironmentCheck {
     Gson gson = new Gson();
 
     public String getServerDetails(String scrum, String server,int index){
-        String url = "http://"+server+"-"+scrum+".gett.qa/alive";
+        String url = "http://"+server+"-"+scrum+".gett.io/alive";
         try {
             URLConnection connection = new URL(url + "").openConnection();
             connection.setRequestProperty("Accept-Charset", charset);
@@ -45,7 +45,7 @@ public class EnvironmentCheck {
 
     }
     public ServerDetails getServerDetailsO (String scrum, String server) {
-        String url = "http://" + server + "-" + scrum + ".gett.qa/alive";
+        String url = "http://" + server + "-" + scrum + ".gett.io/alive";
         try {
             URLConnection connection = new URL(url + "").openConnection();
             connection.setRequestProperty("Accept-Charset", charset);
