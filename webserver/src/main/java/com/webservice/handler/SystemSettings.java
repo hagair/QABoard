@@ -73,16 +73,17 @@ public class SystemSettings {
         }
         return settingKeyValidationArrayList;
     }
-    private String settingTableCreatorByList(ArrayList<SettingKeyValidation> settingKeyValidationArrayList){
+    private String settingTableCreatorByList(ArrayList<SettingKeyValidation> settingKeyValidationList){
         String tableString = "";
-        for (int i = 0; i < settingKeyValidationArrayList.size(); i++) {
-            SettingKeyValidation settingKeyValidation = settingKeyValidationArrayList.get(i);
+        settingKeyValidationList = sortSettingArrayList(settingKeyValidationList);
+        for (int i = 0; i < settingKeyValidationList.size(); i++) {
+            SettingKeyValidation settingKeyValidation = settingKeyValidationList.get(i);
             String trcolor;
             if (settingKeyValidation.isEqual()){
                 trcolor = "<tr>";
 
             } else {
-                trcolor = "<tr bgcolor=\"#FF0000\">";
+                trcolor = "<tr bgcolor=\"#FFA500\">";
             }
             tableString = tableString + trcolor +
                     "<td>" + settingKeyValidation.getModule() +
@@ -109,4 +110,27 @@ public class SystemSettings {
         return ResourcesHandler.loadFromPropFile(filename);
     }
 
+    private ArrayList<SettingKeyValidation> sortSettingArrayList(ArrayList<SettingKeyValidation> settingKeyValidationArrayList){
+
+        ArrayList<SettingKeyValidation> equallist = new ArrayList<SettingKeyValidation>();
+        ArrayList<SettingKeyValidation> notequallist = new ArrayList<SettingKeyValidation>();
+
+        for (int i=0; i < settingKeyValidationArrayList.size(); i++) {
+            SettingKeyValidation settingKeyValidation =  settingKeyValidationArrayList.get(i);
+            if (settingKeyValidation.isEqual()) {
+                equallist.add(settingKeyValidation);
+            } else {
+                if (!settingKeyValidation.isEqual()){
+                    notequallist.add(settingKeyValidation);
+
+                }
+            }
+        }
+        ArrayList<SettingKeyValidation> all = new ArrayList<SettingKeyValidation>();
+        all.addAll(notequallist);
+        all.addAll(equallist);
+        return all;
+
+
+    }
 }
