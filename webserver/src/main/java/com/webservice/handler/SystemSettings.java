@@ -89,9 +89,13 @@ public class SystemSettings {
                     "<td>" + settingKeyValidation.getModule() +
                     "</td><td>" + settingKeyValidation.getKey() +
                     "</td><td>" + settingKeyValidation.getExpected_value() +
+                    "</td><td>" +
                     "</td><td>" + settingKeyValidation.getCountry("il") +
+                    "</td><td>" +
                     "</td><td>" + settingKeyValidation.getCountry("uk") +
+                    "</td><td>" +
                     "</td><td>" + settingKeyValidation.getCountry("ru") +
+                    "</td><td>" +
                     "</td><td>" + settingKeyValidation.getCountry("us") +
                     "</td><td>" + settingKeyValidation.getInfo() +
                     "</td></tr>";

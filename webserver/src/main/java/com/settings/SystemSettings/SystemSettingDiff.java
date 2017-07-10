@@ -15,7 +15,7 @@ public class SystemSettingDiff {
     //Data members
     private String scrum;
     private String url = "jdbc:mysql://scrum-rds.gett.io:3306/";
-    private String replicaCloneProductionUrl = "jdbc:mysql://gt-country-cloned-com.settings.db.gtforge.com/gettaxi_country_production";
+    private String replicaCloneProductionUrl = "jdbc:mysql://gt-country-cloned-db.gtforge.com/gettaxi_country_production";
     private String replicaCloneProductionUser = "automation";
     private String replicaCloneProductionPassword = "Auto!@2016";
     private String query = "Select * from ";
@@ -47,10 +47,10 @@ public class SystemSettingDiff {
         ArrayList<HashMap<String,SettingKey>> countrisMap = new ArrayList<HashMap<String,SettingKey>>();
         try {
             // replicaCloneProductionUrl.replace("country", "il")
-            countrisMap.add(getDiffsFromSpecificCountry(replicaCloneProductionUrl.replace("country", "il"), replicaCloneProductionUser, replicaCloneProductionUser, "system_settings"));
-            countrisMap.add(getDiffsFromSpecificCountry(replicaCloneProductionUrl.replace("country", "uk"), replicaCloneProductionUser, replicaCloneProductionUser, "system_settings"));
-            countrisMap.add(getDiffsFromSpecificCountry(replicaCloneProductionUrl.replace("country", "ru"), replicaCloneProductionUser, replicaCloneProductionUser, "system_settings"));
-            countrisMap.add(getDiffsFromSpecificCountry(replicaCloneProductionUrl.replace("country", "us"), replicaCloneProductionUser, replicaCloneProductionUser, "system_settings"));
+            countrisMap.add(getDiffsFromSpecificCountry(replicaCloneProductionUrl.replace("country", "il"), replicaCloneProductionUser, replicaCloneProductionPassword, "system_settings"));
+            countrisMap.add(getDiffsFromSpecificCountry(replicaCloneProductionUrl.replace("country", "uk"), replicaCloneProductionUser, replicaCloneProductionPassword, "system_settings"));
+            countrisMap.add(getDiffsFromSpecificCountry(replicaCloneProductionUrl.replace("country", "ru"), replicaCloneProductionUser, replicaCloneProductionPassword, "system_settings"));
+            countrisMap.add(getDiffsFromSpecificCountry(replicaCloneProductionUrl.replace("country", "us"), replicaCloneProductionUser, replicaCloneProductionPassword, "system_settings"));
 
         } catch (Exception e) {
             e.printStackTrace();
