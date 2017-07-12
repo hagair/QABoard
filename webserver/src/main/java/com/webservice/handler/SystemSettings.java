@@ -17,14 +17,20 @@ import java.util.Set;
 public class SystemSettings {
     @Autowired
     String scrum;
+    ArrayList<HashMap<String,SettingKey>> prodSettings;
+    SystemSettingDiff systemSettingDiff;
     public SystemSettings(String scrum) {
 
         this.scrum = scrum;
+        this.systemSettingDiff = new SystemSettingDiff();
+        this.prodSettings = systemSettingDiff.getDiffsFromAllProdCountries();
+
     }
+
     public String getSettingsTableHTML(String filename){
         SystemSettingDiff systemSettingDiff = new SystemSettingDiff();
-        ArrayList<HashMap<String,SettingKey>> ss = systemSettingDiff.getDiffsFromAllScrumCountries(scrum);
-        ArrayList<SettingKeyValidation> settingKeyValidationArrayList = getSettingKeyValidationList(ss,filename);
+        ArrayList<HashMap<String,SettingKey>> scrumSettings = systemSettingDiff.getDiffsFromAllScrumCountries(scrum);
+        ArrayList<SettingKeyValidation> settingKeyValidationArrayList = getSettingKeyValidationList(scrumSettings,filename);
 
         return settingTableCreatorByList(settingKeyValidationArrayList);
     }
@@ -78,25 +84,26 @@ public class SystemSettings {
         settingKeyValidationList = sortSettingArrayList(settingKeyValidationList);
         for (int i = 0; i < settingKeyValidationList.size(); i++) {
             SettingKeyValidation settingKeyValidation = settingKeyValidationList.get(i);
+
             String trcolor;
             if (settingKeyValidation.isEqual()){
                 trcolor = "<tr>";
 
             } else {
-                trcolor = "<tr bgcolor=\"#FFA500\">";
+                trcolor = "<tr bgcolor=\"#FF592C\">";
             }
             tableString = tableString + trcolor +
                     "<td>" + settingKeyValidation.getModule() +
                     "</td><td>" + settingKeyValidation.getKey() +
                     "</td><td>" + settingKeyValidation.getExpected_value() +
-                    "</td><td>" +
                     "</td><td>" + settingKeyValidation.getCountry("il") +
-                    "</td><td>" +
                     "</td><td>" + settingKeyValidation.getCountry("uk") +
-                    "</td><td>" +
                     "</td><td>" + settingKeyValidation.getCountry("ru") +
-                    "</td><td>" +
                     "</td><td>" + settingKeyValidation.getCountry("us") +
+                    "</td><td>" + prodSettings.get(0).get(settingKeyValidation.getKey()).getValue() +
+                    "</td><td>" + prodSettings.get(1).get(settingKeyValidation.getKey()).getValue() +
+                    "</td><td>" + prodSettings.get(2).get(settingKeyValidation.getKey()).getValue() +
+                    "</td><td>" + prodSettings.get(3).get(settingKeyValidation.getKey()).getValue() +
                     "</td><td>" + settingKeyValidation.getInfo() +
                     "</td></tr>";
         }

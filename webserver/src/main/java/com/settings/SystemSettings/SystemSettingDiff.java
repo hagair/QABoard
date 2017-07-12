@@ -43,7 +43,7 @@ public class SystemSettingDiff {
         }
         return countrisMap;
     }
-    public ArrayList<HashMap<String,SettingKey>> getDiffsFromAllProdCountries(String scrum) {
+    public ArrayList<HashMap<String,SettingKey>> getDiffsFromAllProdCountries() {
         ArrayList<HashMap<String,SettingKey>> countrisMap = new ArrayList<HashMap<String,SettingKey>>();
         try {
             // replicaCloneProductionUrl.replace("country", "il")
@@ -54,6 +54,7 @@ public class SystemSettingDiff {
 
         } catch (Exception e) {
             e.printStackTrace();
+            return countrisMap;
         }
         return countrisMap;
     }

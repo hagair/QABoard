@@ -59,7 +59,7 @@ public class SpringJpaPostgreSqlApplicationTests {
 	@Test
 	public void testProductionReplica(){
 		SystemSettingDiff systemSettingDiff = new SystemSettingDiff();
-		ArrayList<HashMap<String,SettingKey>> ss = systemSettingDiff.getDiffsFromAllProdCountries("scrum10");
+		ArrayList<HashMap<String,SettingKey>> ss = systemSettingDiff.getDiffsFromAllProdCountries();
 
 		System.out.println();
 	}
