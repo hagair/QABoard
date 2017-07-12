@@ -90,7 +90,7 @@ public class SystemSettings {
                 trcolor = "<tr>";
 
             } else {
-                trcolor = "<tr bgcolor=\"#FF592C\">";
+                trcolor = "<tr bgcolor=\"#FF3636\">";
             }
             tableString = tableString + trcolor +
                     "<td>" + settingKeyValidation.getModule() +
