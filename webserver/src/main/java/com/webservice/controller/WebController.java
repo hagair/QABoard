@@ -48,19 +48,9 @@ public class WebController {
 				"  \"settings\":"+response+"}";
 	}
 	@RequestMapping("/settings/changeExpectedValue")
-	public String changeSettingValue(@RequestParam("scrum") String scrum,
-									 @RequestParam("key") String key,
-									 @RequestParam("value") String value){
-		if (scrum.equals(null)) {
-			scrum = "scrum12";
-		}
-		ChangeSystemSetting changeSystemSetting = new ChangeSystemSetting();
-		try {
-			String oldValue = changeSystemSetting.changeSystemSettingValue("settings_values_"+scrum+".properties", key, value);
-			return "Setting changed from: "+oldValue+" to "+value;
-		} catch (Exception e){
-			return "Setting changed failed!";
-		}
+	public String changeSettingValue(){
+		return ResourcesHandler.loadTxtFile("ChangeSettingForm.html");
+
 	}
 }
 
