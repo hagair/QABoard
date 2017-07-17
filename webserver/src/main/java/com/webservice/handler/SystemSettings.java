@@ -87,7 +87,7 @@ public class SystemSettings {
 
             String trcolor;
             if (settingKeyValidation.isEqual()){
-                trcolor = "<tr>";
+                trcolor = "<tr bgcolor=\"#BDFA99\">";
 
             } else {
                 trcolor = "<tr bgcolor=\"#FF3636\">";
