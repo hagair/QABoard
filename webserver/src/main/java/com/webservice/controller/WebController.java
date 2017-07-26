@@ -47,9 +47,18 @@ public class WebController {
 		return "{\n" +
 				"  \"settings\":"+response+"}";
 	}
-	@RequestMapping("/settings/changeExpectedValue")
-	public String changeSettingValue(){
+	@RequestMapping("/settings/changeValue")
+	public String changeSettingExpectedValue(){
 		return ResourcesHandler.loadTxtFile("ChangeSettingForm.html");
+
+	}
+	@RequestMapping("/settings/changeExpectedValue")
+	public String changeSettingValue(@RequestParam("scrum") String scrum,
+									 @RequestParam("key") String key,
+									 @RequestParam("value") String value){
+		ChangeSystemSetting changeSystemSetting = new ChangeSystemSetting();
+		String oldValue = changeSystemSetting.changeSystemSettingValue("settings_values_"+scrum+".properties", key, value);
+		return settingComperatorHTML(scrum);
 
 	}
 }
