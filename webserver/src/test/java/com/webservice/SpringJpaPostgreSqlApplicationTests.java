@@ -1,6 +1,7 @@
 package com.webservice;
 
 import com.google.gson.Gson;
+import com.settings.SystemSettings.ChangeSystemSetting;
 import com.settings.SystemSettings.SystemSettingDiff;
 import com.settings.model.SettingKey;
 import com.settings.model.SettingKeyValidation;
@@ -62,6 +63,11 @@ public class SpringJpaPostgreSqlApplicationTests {
 		ArrayList<HashMap<String,SettingKey>> ss = systemSettingDiff.getDiffsFromAllProdCountries();
 
 		System.out.println();
+	}
+	@Test
+	public void testUpdateSettingValueOnScrum(){
+		ChangeSystemSetting changeSystemSetting = new ChangeSystemSetting();
+		changeSystemSetting.changeValueOnScrumDB("scrum12", "b2b_gateway_enabled", "1");
 	}
 
 

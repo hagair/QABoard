@@ -61,5 +61,14 @@ public class WebController {
 		return settingComperatorHTML(scrum);
 
 	}
+	@RequestMapping("/settings/changeScrumValues")
+	public String changeScrumSettingValue(@RequestParam("scrum") String scrum,
+									 @RequestParam("key") String key,
+									 @RequestParam("value") String value){
+		ChangeSystemSetting changeSystemSetting = new ChangeSystemSetting();
+		changeSystemSetting.changeValueOnScrumDB(scrum, key, value);
+		return settingComperatorHTML(scrum);
+
+	}
 }
 

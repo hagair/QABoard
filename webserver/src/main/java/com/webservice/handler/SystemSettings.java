@@ -85,27 +85,40 @@ public class SystemSettings {
         for (int i = 0; i < settingKeyValidationList.size(); i++) {
             SettingKeyValidation settingKeyValidation = settingKeyValidationList.get(i);
 
-            String trcolor;
             if (settingKeyValidation.isEqual()){
-                trcolor = "<tr bgcolor=\"#BDFA99\">";
+                tableString = tableString + "<tr bgcolor=\"#BDFA99\">" +
+                        "<td>" + settingKeyValidation.getModule() +
+                        "</td><td>" + settingKeyValidation.getKey() +
+                        "</td><td>" + settingKeyValidation.getExpected_value() +
+                        "</td><td>" + settingKeyValidation.getCountry("il") +
+                        "</td><td>" + settingKeyValidation.getCountry("uk") +
+                        "</td><td>" + settingKeyValidation.getCountry("ru") +
+                        "</td><td>" + settingKeyValidation.getCountry("us") +
+                        "</td><td>" + prodSettings.get(0).get(settingKeyValidation.getKey()).getValue() +
+                        "</td><td>" + prodSettings.get(1).get(settingKeyValidation.getKey()).getValue() +
+                        "</td><td>" + prodSettings.get(2).get(settingKeyValidation.getKey()).getValue() +
+                        "</td><td>" + prodSettings.get(3).get(settingKeyValidation.getKey()).getValue() +
+                        "</td><td>" + settingKeyValidation.getInfo() +
+                        "</td></tr>";
 
             } else {
-                trcolor = "<tr bgcolor=\"#FF3636\">";
+                tableString = tableString + "<tr bgcolor=\"#FF3636\">" +
+                        "<td>" + settingKeyValidation.getModule() +
+                        "</td><td>" + settingKeyValidation.getKey() +
+                        "</td><td>" + settingKeyValidation.getExpected_value() +
+                        "<br><a href=http://qaboard.gett.io:8080/settings/changeScrumValues?scrum="+scrum+"&key="+settingKeyValidation.getKey()+"&value="+settingKeyValidation.getExpected_value()+">Align Values</a>"+
+                        "</td><td>" + settingKeyValidation.getCountry("il") +
+                        "</td><td>" + settingKeyValidation.getCountry("uk") +
+                        "</td><td>" + settingKeyValidation.getCountry("ru") +
+                        "</td><td>" + settingKeyValidation.getCountry("us") +
+                        "</td><td>" + prodSettings.get(0).get(settingKeyValidation.getKey()).getValue() +
+                        "</td><td>" + prodSettings.get(1).get(settingKeyValidation.getKey()).getValue() +
+                        "</td><td>" + prodSettings.get(2).get(settingKeyValidation.getKey()).getValue() +
+                        "</td><td>" + prodSettings.get(3).get(settingKeyValidation.getKey()).getValue() +
+                        "</td><td>" + settingKeyValidation.getInfo() +
+                        "</td></tr>";
             }
-            tableString = tableString + trcolor +
-                    "<td>" + settingKeyValidation.getModule() +
-                    "</td><td>" + settingKeyValidation.getKey() +
-                    "</td><td>" + settingKeyValidation.getExpected_value() +
-                    "</td><td>" + settingKeyValidation.getCountry("il") +
-                    "</td><td>" + settingKeyValidation.getCountry("uk") +
-                    "</td><td>" + settingKeyValidation.getCountry("ru") +
-                    "</td><td>" + settingKeyValidation.getCountry("us") +
-                    "</td><td>" + prodSettings.get(0).get(settingKeyValidation.getKey()).getValue() +
-                    "</td><td>" + prodSettings.get(1).get(settingKeyValidation.getKey()).getValue() +
-                    "</td><td>" + prodSettings.get(2).get(settingKeyValidation.getKey()).getValue() +
-                    "</td><td>" + prodSettings.get(3).get(settingKeyValidation.getKey()).getValue() +
-                    "</td><td>" + settingKeyValidation.getInfo() +
-                    "</td></tr>";
+
         }
         return tableString;
     }
