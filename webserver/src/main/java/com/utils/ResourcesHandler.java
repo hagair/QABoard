@@ -8,10 +8,15 @@ import java.util.*;
  */
 public class ResourcesHandler {
     private static String path = System.getProperty("user.dir");
-    private static String innerpath = "/classes/static/";
+    private static String innerpath = "/SettingExpectedValues/";
 
     public static void printPath(){
+
         System.out.println(path+innerpath);
+    }
+
+    public static void getPath(){
+        System.out.println(path);
     }
     public static void setPath(String condition){
         if (condition.equals("debug")){
@@ -44,6 +49,7 @@ public class ResourcesHandler {
         return list;
     }
     public static String loadTxtFile(String filename) {
+        System.out.println("loading test file from: "+path+innerpath+filename);
         File file = new File(path+innerpath+filename);
         StringBuilder fileContents = new StringBuilder((int)file.length());
         Scanner scanner;
@@ -62,9 +68,22 @@ public class ResourcesHandler {
         }
     }
 
+    public static void writeMapToPropertyFile(String filename, Map<String,String> keyMap) throws IOException {
+        BufferedWriter output = null;
+        File file = new File(path+innerpath+filename);
+        output = new BufferedWriter(new FileWriter(file));
+        Set<String> mapSet = keyMap.keySet();
+        for (String s : mapSet) {
+            output.write(s+"="+keyMap.get(s));
+            output.newLine();
+        }
+        output.close();
+
+    }
     public static Map<String,String> loadPropertyFileToMap(String filename) {
         FileInputStream fis;
         try {
+            System.out.println("load property from: "+path+innerpath+filename);
             fis = new FileInputStream(path+innerpath+filename);
             ResourceBundle resources = new PropertyResourceBundle(fis);
             Map<String,String> map = new HashMap<String,String>();

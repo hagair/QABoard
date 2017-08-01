@@ -79,4 +79,10 @@ public class DBHandler {
         ResultSet rs = stmt.executeQuery(query);
         return rs;
     }
+    public int updateQuery(String query) throws SQLException {
+        // create the java mysql update preparedstatement
+        PreparedStatement preparedStmt = this.connection.prepareStatement(query);
+        int rs = preparedStmt.executeUpdate(query);
+        return rs;
+    }
 }
