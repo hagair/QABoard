@@ -1,14 +1,21 @@
-package com.webservice.model;
+package com.settings.model;
 
 /**
  * Created by hagairevah on 6/2/17.
  */
 public class ServerDetails {
     private String server;
-    private long now;
-    private String status;
     private boolean alive;
     private String git_revision;
+    private String commit;
+
+    public String getCommit() {
+        return commit;
+    }
+
+    public void setCommit(String commit) {
+        this.commit = commit;
+    }
 
     public String getServer() {
         return server;
@@ -16,22 +23,6 @@ public class ServerDetails {
 
     public void setServer(String server) {
         this.server = server;
-    }
-
-    public long getNow() {
-        return now;
-    }
-
-    public void setNow(long now) {
-        this.now = now;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public boolean isAlive() {

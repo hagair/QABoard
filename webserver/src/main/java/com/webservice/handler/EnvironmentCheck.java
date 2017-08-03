@@ -1,13 +1,15 @@
 package com.webservice.handler;
 
 import com.google.gson.Gson;
-import com.webservice.model.ServerDetails;
+import com.settings.model.ServerDetails;
 import com.utils.ResourcesHandler;
 
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+
+import static com.utils.ResourcesHandler.getStringFromInputStream;
 
 /**
  * Created by hagairevah on 6/1/17.
@@ -22,11 +24,14 @@ public class EnvironmentCheck {
             URLConnection connection = new URL(url + "").openConnection();
             connection.setRequestProperty("Accept-Charset", charset);
             InputStream response = connection.getInputStream();
+            System.out.print(server+"  ");
             ServerDetails serverDetails = gson.fromJson(getStringFromInputStream(response), ServerDetails.class);
-            System.out.print("#");
+            serverDetails.setServer(server);
+            if (serverDetails.getGit_revision()==null){
+                serverDetails.setGit_revision(serverDetails.getCommit());
+            }
+//            System.out.print("#");
             return "<tr><td>"+serverDetails.getServer()+"</td>" +
-                    "<td>"+serverDetails.getNow()+"</td>" +
-                    "<td>"+serverDetails.getStatus()+"</td>" +
                     "<td>"+serverDetails.isAlive()+"</td>" +
                     "<td>"+serverDetails.getGit_revision()+"</td>" +
                     "<td><a href="+url+">"+url+"</a></td>" +
@@ -50,7 +55,8 @@ public class EnvironmentCheck {
             URLConnection connection = new URL(url + "").openConnection();
             connection.setRequestProperty("Accept-Charset", charset);
             InputStream response = connection.getInputStream();
-            System.out.print("#");
+//            System.out.print("#");
+            System.out.print(server+"  ");
             ServerDetails serverDetails = gson.fromJson(getStringFromInputStream(response), ServerDetails.class);
             serverDetails.setServer(server);
             return serverDetails;
@@ -84,32 +90,5 @@ public class EnvironmentCheck {
         return ResourcesHandler.loadFromPropFile(filename);
     }
 
-    private String getStringFromInputStream(InputStream is) {
 
-        BufferedReader br = null;
-        StringBuilder sb = new StringBuilder();
-
-        String line;
-        try {
-
-            br = new BufferedReader(new InputStreamReader(is));
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        return sb.toString();
-
-    }
 }
