@@ -124,8 +124,12 @@ public class SystemSettings {
     }
     private boolean setValidation(String expected, ArrayList<String> countries){
         boolean flag = true;
-        for (int i = 0; i <4; i++) {
-            if (expected.equals(countries.get(i))){ } else {flag=false;}
+        for (int i = 0; i <3; i++) {
+            if (expected.equals(countries.get(i))){
+
+            } else {
+                flag=false;
+            }
         }
         return flag;
     }
