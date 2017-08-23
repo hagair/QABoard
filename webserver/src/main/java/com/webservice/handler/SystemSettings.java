@@ -27,11 +27,13 @@ public class SystemSettings {
 
     }
 
-    public String getSettingsTableHTML(String filename){
+    public String getSettingsTableHTML(String filename, boolean all){
         SystemSettingDiff systemSettingDiff = new SystemSettingDiff();
         ArrayList<HashMap<String,SettingKey>> scrumSettings = systemSettingDiff.getDiffsFromAllScrumCountries(scrum);
         ArrayList<SettingKeyValidation> settingKeyValidationArrayList = getSettingKeyValidationList(scrumSettings,filename);
-
+        if (all){
+            settingKeyValidationArrayList.addAll(settingKeyValidationArrayList.size(),getSettingKeynonValidationList(scrumSettings,filename));
+        }
         return settingTableCreatorByList(settingKeyValidationArrayList);
     }
 
@@ -41,7 +43,51 @@ public class SystemSettings {
 
         return getSettingKeyValidationList(ss,filename);
     }
-    private ArrayList<SettingKeyValidation> getSettingKeyValidationList(ArrayList<HashMap<String,SettingKey>> list, String filename){
+    private ArrayList<SettingKeyValidation> getSettingKeynonValidationList(ArrayList<HashMap<String,SettingKey>> list, String filename) {
+        String s = "";
+        String v1 = "";
+        String v2 = "";
+        String v3 = "";
+        ArrayList<SettingKeyValidation> settingKeyValidationArrayList = new ArrayList<SettingKeyValidation>();
+        Map<String,String> keyMap = ResourcesHandler.loadPropertyFileToMap(filename);
+        Set<String> set = list.get(0).keySet();
+        System.out.println(set.size());
+        for (String key : set) {
+            if (keyMap.get(key)==null) {
+                SettingKeyValidation settingKeyValidation = new SettingKeyValidation();
+                settingKeyValidation.setModule(list.get(0).get(key).getModule());
+                settingKeyValidation.setKey(list.get(0).get(key).getKey());
+                settingKeyValidation.setExpected_value(keyMap.get(key));
+                settingKeyValidation.setInfo(list.get(0).get(key).getInformation());
+
+                if (list.get(1).get(key) != null) {
+                    v1 = list.get(1).get(key).getValue();
+                } else {
+                    v1 = "";
+                }
+                if (list.get(2).get(key) != null) {
+                    v2 = list.get(2).get(key).getValue();
+                } else {
+                    v2 = "";
+                }
+                if (list.get(3).get(key) != null) {
+                    v3 = list.get(3).get(key).getValue();
+                } else {
+                    v3 = "";
+                }
+
+                settingKeyValidation.setCountry("il", list.get(0).get(key).getValue());
+                settingKeyValidation.setCountry("uk", v1);
+                settingKeyValidation.setCountry("ru", v2);
+                settingKeyValidation.setCountry("us", v3);
+                settingKeyValidation.setEqual(setValidation(settingKeyValidation.getExpected_value(), settingKeyValidation.getCountries()));
+                settingKeyValidationArrayList.add(settingKeyValidation);
+            }
+        }
+        return settingKeyValidationArrayList;
+
+    }
+        private ArrayList<SettingKeyValidation> getSettingKeyValidationList(ArrayList<HashMap<String,SettingKey>> list, String filename){
         String s = "";
         String v1 = "";
         String v2 = "";
@@ -53,29 +99,33 @@ public class SystemSettings {
         int i = 0;
         for (String key : set) {
             i++;
-//            System.out.println(i);
+            System.out.println(i);
             SettingKeyValidation settingKeyValidation = new SettingKeyValidation();
-            settingKeyValidation.setModule(list.get(0).get(key).getModule());
-            settingKeyValidation.setKey(list.get(0).get(key).getKey());
-            settingKeyValidation.setExpected_value(keyMap.get(key));
-            settingKeyValidation.setInfo(list.get(0).get(key).getInformation());
+            try {
+                settingKeyValidation.setModule(list.get(0).get(key).getModule());
+                settingKeyValidation.setKey(list.get(0).get(key).getKey());
+                settingKeyValidation.setExpected_value(keyMap.get(key));
+                settingKeyValidation.setInfo(list.get(0).get(key).getInformation());
+                if (list.get(1).get(key) != null){
+                    v1 = list.get(1).get(key).getValue();
+                } else {v1="";}
+                if (list.get(2).get(key) != null){
+                    v2 = list.get(2).get(key).getValue();
+                } else {v2="";}
+                if (list.get(3).get(key) != null){
+                    v3 = list.get(3).get(key).getValue();
+                } else {v3="";}
 
-            if (list.get(1).get(key) != null){
-                v1 = list.get(1).get(key).getValue();
-            } else {v1="";}
-            if (list.get(2).get(key) != null){
-                v2 = list.get(2).get(key).getValue();
-            } else {v2="";}
-            if (list.get(3).get(key) != null){
-                v3 = list.get(3).get(key).getValue();
-            } else {v3="";}
+                settingKeyValidation.setCountry("il",list.get(0).get(key).getValue());
+                settingKeyValidation.setCountry("uk",v1);
+                settingKeyValidation.setCountry("ru",v2);
+                settingKeyValidation.setCountry("us",v3);
+                settingKeyValidation.setEqual(setValidation(settingKeyValidation.getExpected_value(),settingKeyValidation.getCountries()));
+                settingKeyValidationArrayList.add(settingKeyValidation);
+            } catch (Exception e){
+                System.out.println(key +" was not found");
+            }
 
-            settingKeyValidation.setCountry("il",list.get(0).get(key).getValue());
-            settingKeyValidation.setCountry("uk",v1);
-            settingKeyValidation.setCountry("ru",v2);
-            settingKeyValidation.setCountry("us",v3);
-            settingKeyValidation.setEqual(setValidation(settingKeyValidation.getExpected_value(),settingKeyValidation.getCountries()));
-            settingKeyValidationArrayList.add(settingKeyValidation);
         }
         return settingKeyValidationArrayList;
     }

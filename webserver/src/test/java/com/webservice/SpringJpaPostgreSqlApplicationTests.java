@@ -30,7 +30,7 @@ public class SpringJpaPostgreSqlApplicationTests {
 		SystemSettings systemSettings = new SystemSettings(scrum);
 		String  html = ResourcesHandler.loadTxtFile("home.html");
 		String response = html.replace("##scrum",scrum);
-		response = response.replace("##table",systemSettings.getSettingsTableHTML("settings.properties"));
+		response = response.replace("##table",systemSettings.getSettingsTableHTML("settings.properties",false));
 		System.out.println(response);
 	}
 	@Test

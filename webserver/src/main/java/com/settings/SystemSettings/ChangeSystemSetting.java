@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by hagairevah on 6/25/17.
@@ -50,5 +51,17 @@ public class ChangeSystemSetting {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void changeAllValuesOnScrumDB(String scrum){
+        Map<String,String> keyMap = ResourcesHandler.loadPropertyFileToMap("settings_values_"+scrum+".properties");
+        Set<String> set = keyMap.keySet();
+        System.out.println(set.size());
+
+        for (String key : set) {
+            changeValueOnScrumDB(scrum,key,keyMap.get(key));
+            System.out.println("key="+key+" Changed");
+        }
+
     }
 }

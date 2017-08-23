@@ -18,18 +18,25 @@ public class SettingsController {
 
 	SystemSettings systemSettings;
 	Gson gson;
-
+	boolean all=false;
 	@CrossOrigin(origins = "http://localhost:8080")
 	@RequestMapping("/settings")
 	public String settingComperatorHTML(@RequestParam("scrum") String scrum){
-		if (scrum.equals(null)) {
-			scrum = "scrum12";
-		}
 		systemSettings = new SystemSettings(scrum);
 //		ResourcesHandler.printPath();
 		String  html = ResourcesHandler.loadTxtFile("home.html");
 		String response = html.replace("##scrum",scrum);
-		response = response.replace("##table",systemSettings.getSettingsTableHTML("settings_values_"+scrum+".properties"));
+		response = response.replace("##table",systemSettings.getSettingsTableHTML("settings_values_"+scrum+".properties",false));
+		return response;
+	}
+	@CrossOrigin(origins = "http://localhost:8080")
+	@RequestMapping("/Allsettings")
+	public String AllsettingComperatorHTML(@RequestParam("scrum") String scrum){
+		systemSettings = new SystemSettings(scrum);
+//		ResourcesHandler.printPath();
+		String  html = ResourcesHandler.loadTxtFile("home.html");
+		String response = html.replace("##scrum",scrum);
+		response = response.replace("##table",systemSettings.getSettingsTableHTML("settings_values_"+scrum+".properties",true));
 		return response;
 	}
 
@@ -70,5 +77,12 @@ public class SettingsController {
 		return settingComperatorHTML(scrum);
 
 	}
+	@RequestMapping("/settings/changeAllScrumValues")
+	public String changeAllScrumSettingValue(@RequestParam("scrum") String scrum){
+		ChangeSystemSetting changeSystemSetting = new ChangeSystemSetting();
+		changeSystemSetting.changeAllValuesOnScrumDB(scrum);
+		return settingComperatorHTML(scrum);
+	}
+
 }
 
