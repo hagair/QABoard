@@ -136,6 +136,7 @@ public class SystemSettings {
             SettingKeyValidation settingKeyValidation = settingKeyValidationList.get(i);
 
             if (settingKeyValidation.isEqual()){
+                System.out.println(settingKeyValidation.getKey());
                 tableString = tableString + "<tr bgcolor=\"#BDFA99\">" +
                         "<td>" + settingKeyValidation.getModule() +
                         "</td><td>" + settingKeyValidation.getKey() +
@@ -147,7 +148,7 @@ public class SystemSettings {
                         "</td><td>" + prodSettings.get(0).get(settingKeyValidation.getKey()).getValue() +
                         "</td><td>" + prodSettings.get(1).get(settingKeyValidation.getKey()).getValue() +
                         "</td><td>" + prodSettings.get(2).get(settingKeyValidation.getKey()).getValue() +
-                        "</td><td>" + prodSettings.get(3).get(settingKeyValidation.getKey()).getValue() +
+                        "</td><td>" + //prodSettings.get(3).get(settingKeyValidation.getKey()).getValue() +
                         "</td><td>" + settingKeyValidation.getInfo() +
                         "</td></tr>";
 
@@ -164,7 +165,7 @@ public class SystemSettings {
                         "</td><td>" + prodSettings.get(0).get(settingKeyValidation.getKey()).getValue() +
                         "</td><td>" + prodSettings.get(1).get(settingKeyValidation.getKey()).getValue() +
                         "</td><td>" + prodSettings.get(2).get(settingKeyValidation.getKey()).getValue() +
-                        "</td><td>" + prodSettings.get(3).get(settingKeyValidation.getKey()).getValue() +
+                        "</td><td>" + //prodSettings.get(3).get(settingKeyValidation.getKey()).getValue() +
                         "</td><td>" + settingKeyValidation.getInfo() +
                         "</td></tr>";
             }
