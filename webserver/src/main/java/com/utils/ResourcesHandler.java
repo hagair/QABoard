@@ -80,6 +80,15 @@ public class ResourcesHandler {
         output.close();
 
     }
+    public static void writeStringToPropertyFile(String filename, String filecontent) throws IOException {
+        BufferedWriter output = null;
+        File file = new File(path+innerpath+filename);
+        output = new BufferedWriter(new FileWriter(file));
+        output.write(filecontent);
+        output.close();
+        System.out.println("file save to: "+path+innerpath+filename);
+
+    }
     public static Map<String,String> loadPropertyFileToMap(String filename) {
         FileInputStream fis;
         try {

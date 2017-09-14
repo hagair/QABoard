@@ -6,11 +6,16 @@ import com.settings.model.SettingKeyValidation;
 import com.webservice.handler.SystemSettings;
 import com.utils.ResourcesHandler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.ws.rs.HttpMethod;
+import javax.ws.rs.POST;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 @RestController
@@ -83,6 +88,37 @@ public class SettingsController {
 		changeSystemSetting.changeAllValuesOnScrumDB(scrum);
 		return settingComperatorHTML(scrum);
 	}
+	@RequestMapping(value="/settings/FileUpload", headers=("content-type=multipart/*"), method = RequestMethod.POST)
+	public String uploadsettingfile(@RequestParam("scrum") String scrum,
+									@RequestParam("file") MultipartFile file){
+		System.out.println("file uploaded:");
+		String fileContent;
+		String filename = "settings_values_"+scrum+".properties";
+		if (!file.isEmpty()) {
+			try {
 
+				byte[] bytes = file.getBytes();
+				fileContent = new String(bytes, StandardCharsets.UTF_8);
+				ResourcesHandler.writeStringToPropertyFile(filename, fileContent);
+				return "You successfully created: " + filename;
+			} catch (Exception e) {
+				return "You failed to upload  => " + e.getMessage();
+			}
+		} else {
+			return "You failed to upload because the file was empty.";
+		}
+	}
+	@RequestMapping("/settings/printFile")
+	public String printKeyValueFile(@RequestParam("scrum") String scrum){
+		if (scrum.equals(null)) {
+			scrum = "scrum12";
+		}
+		String filename = "settings_values_"+scrum+".properties";
+		String filecontent = "<html>\n<body>" +
+				"<h1>"+filename+":</h1>"+
+				ResourcesHandler.loadTxtFile(filename)+"</body></html>";
+		filecontent = filecontent.replaceAll("\n","<br>");
+		return filecontent;
+	}
 }
 
