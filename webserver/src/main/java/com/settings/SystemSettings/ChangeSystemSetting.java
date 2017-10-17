@@ -39,15 +39,31 @@ public class ChangeSystemSetting {
 
     }
     public void  changeValueOnScrumDB(String scrum, String key, String value){
+        String[] values = new String[3];
 
-        String queryString = query;
-        queryString=queryString.replace("#value", value);
-        queryString=queryString.replace("#key", key);
+        if ((value.substring(0,1).contentEquals("["))&&(value.substring(value.length()-1,value.length()).contentEquals("]"))){
+            values = value.substring(1,value.length()-1).split(",");
+        } else {
+            values[0]=value;
+            values[1]=value;
+            values[2]=value;
+        }
+
+        String queryString = "";
         try {
+            queryString=query.replace("#value", values[0]);
+            queryString=queryString.replace("#key", key);
+            System.out.println(queryString);
             updateQuery("il"+scrum,"il"+scrum, queryString);
+            queryString=query.replace("#value", values[1]);
+            queryString=queryString.replace("#key", key);
+            System.out.println(queryString);
             updateQuery("uk"+scrum,"uk"+scrum, queryString);
+            queryString=query.replace("#value", values[2]);
+            queryString=queryString.replace("#key", key);
+            System.out.println(queryString);
             updateQuery("ru"+scrum,"ru"+scrum, queryString);
-            updateQuery("us"+scrum,"us"+scrum, queryString);
+//            updateQuery("us"+scrum,"us"+scrum, queryString);
         } catch (Exception e) {
             e.printStackTrace();
         }
