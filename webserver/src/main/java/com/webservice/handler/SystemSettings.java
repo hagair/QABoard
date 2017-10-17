@@ -174,9 +174,18 @@ public class SystemSettings {
         return tableString;
     }
     private boolean setValidation(String expected, ArrayList<String> countries){
+        String[] values = new String[3];
+
+        if ((expected.substring(0,1).contentEquals("["))&&(expected.substring(expected.length()-1,expected.length()).contentEquals("]"))){
+            values = expected.substring(1,expected.length()-1).split(",");
+        } else {
+            values[0]=expected;
+            values[1]=expected;
+            values[2]=expected;
+        }
         boolean flag = true;
         for (int i = 0; i <3; i++) {
-            if (expected.equals(countries.get(i))){
+            if (values[i].equals(countries.get(i))){
 
             } else {
                 flag=false;
