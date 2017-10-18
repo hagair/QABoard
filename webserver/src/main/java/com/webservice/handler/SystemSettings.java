@@ -136,7 +136,8 @@ public class SystemSettings {
             SettingKeyValidation settingKeyValidation = settingKeyValidationList.get(i);
 
             if (settingKeyValidation.isEqual()){
-                System.out.println(settingKeyValidation.getKey());
+                try {
+                    System.out.println(settingKeyValidation.getKey());
                 tableString = tableString + "<tr bgcolor=\"#BDFA99\">" +
                         "<td>" + settingKeyValidation.getModule() +
                         "</td><td>" + settingKeyValidation.getKey() +
@@ -144,30 +145,37 @@ public class SystemSettings {
                         "</td><td>" + settingKeyValidation.getCountry("il") +
                         "</td><td>" + settingKeyValidation.getCountry("uk") +
                         "</td><td>" + settingKeyValidation.getCountry("ru") +
-                        "</td><td>" + settingKeyValidation.getCountry("us") +
+                        //"</td><td>" + settingKeyValidation.getCountry("us") +
                         "</td><td>" + prodSettings.get(0).get(settingKeyValidation.getKey()).getValue() +
                         "</td><td>" + prodSettings.get(1).get(settingKeyValidation.getKey()).getValue() +
                         "</td><td>" + prodSettings.get(2).get(settingKeyValidation.getKey()).getValue() +
-                        "</td><td>" + //prodSettings.get(3).get(settingKeyValidation.getKey()).getValue() +
+                        //"</td><td>" + prodSettings.get(3).get(settingKeyValidation.getKey()).getValue() +
                         "</td><td>" + settingKeyValidation.getInfo() +
                         "</td></tr>";
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
 
             } else {
-                tableString = tableString + "<tr bgcolor=\"#FF3636\">" +
-                        "<td>" + settingKeyValidation.getModule() +
-                        "</td><td>" + settingKeyValidation.getKey() +
-                        "</td><td>" + settingKeyValidation.getExpected_value() +
-                        "<br><a href=http://qaboard.gett.io:8080/settings/changeScrumValues?scrum="+scrum+"&key="+settingKeyValidation.getKey()+"&value="+settingKeyValidation.getExpected_value()+">Align Values</a>"+
-                        "</td><td>" + settingKeyValidation.getCountry("il") +
-                        "</td><td>" + settingKeyValidation.getCountry("uk") +
-                        "</td><td>" + settingKeyValidation.getCountry("ru") +
-                        "</td><td>" + settingKeyValidation.getCountry("us") +
-                        "</td><td>" + prodSettings.get(0).get(settingKeyValidation.getKey()).getValue() +
-                        "</td><td>" + prodSettings.get(1).get(settingKeyValidation.getKey()).getValue() +
-                        "</td><td>" + prodSettings.get(2).get(settingKeyValidation.getKey()).getValue() +
-                        "</td><td>" + //prodSettings.get(3).get(settingKeyValidation.getKey()).getValue() +
-                        "</td><td>" + settingKeyValidation.getInfo() +
-                        "</td></tr>";
+                try {
+                    tableString = tableString + "<tr bgcolor=\"#FF3636\">" +
+                            "<td>" + settingKeyValidation.getModule() +
+                            "</td><td>" + settingKeyValidation.getKey() +
+                            "</td><td>" + settingKeyValidation.getExpected_value() +
+                            "<br><a href=http://qaboard.gett.io:8080/settings/changeScrumValues?scrum=" + scrum + "&key=" + settingKeyValidation.getKey() + "&value=" + settingKeyValidation.getExpected_value() + ">Align Values</a>" +
+                            "</td><td>" + settingKeyValidation.getCountry("il") +
+                            "</td><td>" + settingKeyValidation.getCountry("uk") +
+                            "</td><td>" + settingKeyValidation.getCountry("ru") +
+                            //"</td><td>" + settingKeyValidation.getCountry("us") +
+                            "</td><td>" + prodSettings.get(0).get(settingKeyValidation.getKey()).getValue() +
+                            "</td><td>" + prodSettings.get(1).get(settingKeyValidation.getKey()).getValue() +
+                            "</td><td>" + prodSettings.get(2).get(settingKeyValidation.getKey()).getValue() +
+                            //"</td><td>" + prodSettings.get(3).get(settingKeyValidation.getKey()).getValue() +
+                            "</td><td>" + settingKeyValidation.getInfo() +
+                            "</td></tr>";
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
             }
 
         }
