@@ -3,6 +3,7 @@ package com.webservice.controller;
 import com.webservice.handler.SystemSettings;
 import com.utils.ResourcesHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,7 @@ public class EnvStatusController {
     EnvironmentCheck environmentCheck = new EnvironmentCheck();
     SystemSettings systemSettings;
 
+    @CrossOrigin(origins = "http://localhost:7001")
     @RequestMapping("/statusJson")
     public String serverStatusJ(@RequestParam("scrum") String scrum){
         if (scrum.equals(null)) {
