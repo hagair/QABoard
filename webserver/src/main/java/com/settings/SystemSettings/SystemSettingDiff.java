@@ -15,6 +15,7 @@ public class SystemSettingDiff {
     //Data members
     private String scrum;
     private String url = "jdbc:mysql://scrum-rds.gett.io:3306/";
+    private String urlDocker = "jdbc:mysql://Db-##.gett.io:3306/";
     private String replicaCloneProductionUrl = "jdbc:mysql://gt-country-cloned-db.gtforge.com/gettaxi_country_production";
     private String replicaCloneProductionUser = "automation";
     private String replicaCloneProductionPassword = "Auto!@2016";
@@ -31,12 +32,16 @@ public class SystemSettingDiff {
     }
 
     public ArrayList<HashMap<String,SettingKey>> getDiffsFromAllScrumCountries(String scrum) {
+        if ((scrum.equals("scrum13"))||(scrum.equals("scrum14"))||(scrum.equals("scrum16"))){
+            url = "jdbc:mysql://Db-"+scrum+".gett.io:3306/";
+            scrum="scrum0";
+        }
         ArrayList<HashMap<String,SettingKey>> countrisMap = new ArrayList<HashMap<String,SettingKey>>();
         try {
-            countrisMap.add(getDiffsFromSpecificCountry(this.url + "il" + scrum, "il" + scrum, "il" + scrum, "system_settings"));
-            countrisMap.add(getDiffsFromSpecificCountry(this.url + "uk" + scrum, "uk" + scrum, "uk" + scrum, "system_settings"));
-            countrisMap.add(getDiffsFromSpecificCountry(this.url + "ru" + scrum, "ru" + scrum, "ru" + scrum, "system_settings"));
-            countrisMap.add(getDiffsFromSpecificCountry(this.url + "us" + scrum, "us" + scrum, "us" + scrum, "system_settings"));
+            countrisMap.add(getDiffsFromSpecificCountry(url + "il" + scrum, "il" + scrum, "il" + scrum, "system_settings"));
+            countrisMap.add(getDiffsFromSpecificCountry(url + "uk" + scrum, "uk" + scrum, "uk" + scrum, "system_settings"));
+            countrisMap.add(getDiffsFromSpecificCountry(url + "ru" + scrum, "ru" + scrum, "ru" + scrum, "system_settings"));
+            countrisMap.add(getDiffsFromSpecificCountry(url + "us" + scrum, "us" + scrum, "us" + scrum, "system_settings"));
 
         } catch (Exception e) {
             e.printStackTrace();

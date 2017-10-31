@@ -16,6 +16,7 @@ import java.util.Set;
  */
 public class ChangeSystemSetting {
     //Data members
+    private String urlDocker = "jdbc:mysql://Db-##.gett.io:3306/";
     private String url = "jdbc:mysql://scrum-rds.gett.io:3306/";
     private String query = "UPDATE system_settings SET `value` = '#value' WHERE `key` = '#key';";
 
@@ -32,7 +33,20 @@ public class ChangeSystemSetting {
 
     }
 
-    public void updateQuery(String username, String password, String querystatemane) throws Exception {
+    public void updateQuery(String scrum,String country, String querystatemane) throws Exception {
+        String username="";
+        String password="";
+        if ((scrum.equals("scrum13"))||(scrum.equals("scrum14"))||(scrum.equals("scrum16"))){
+            url = "jdbc:mysql://Db-"+scrum+".gett.io:3306/";
+            username=country+"scrum0";
+            password=country+"scrum0";
+        } else {
+            username=country+scrum;
+            password=country+scrum;
+        }
+        System.out.println("DBURL: "+url);
+        System.out.println("User: "+username);
+        System.out.println("Password: "+password);
         DBHandler dbHandler = new DBHandler(url+username, username, password);
         dbHandler.connect();
         int resultSet = dbHandler.updateQuery(querystatemane);
@@ -54,15 +68,15 @@ public class ChangeSystemSetting {
             queryString=query.replace("#value", values[0]);
             queryString=queryString.replace("#key", key);
             System.out.println(queryString);
-            updateQuery("il"+scrum,"il"+scrum, queryString);
+            updateQuery(scrum,"il", queryString);
             queryString=query.replace("#value", values[1]);
             queryString=queryString.replace("#key", key);
             System.out.println(queryString);
-            updateQuery("uk"+scrum,"uk"+scrum, queryString);
+            updateQuery(scrum,"uk", queryString);
             queryString=query.replace("#value", values[2]);
             queryString=queryString.replace("#key", key);
             System.out.println(queryString);
-            updateQuery("ru"+scrum,"ru"+scrum, queryString);
+            updateQuery(scrum,"ru", queryString);
 //            updateQuery("us"+scrum,"us"+scrum, queryString);
         } catch (Exception e) {
             e.printStackTrace();

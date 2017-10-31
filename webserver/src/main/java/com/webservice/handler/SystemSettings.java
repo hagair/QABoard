@@ -112,14 +112,14 @@ public class SystemSettings {
                 if (list.get(2).get(key) != null){
                     v2 = list.get(2).get(key).getValue();
                 } else {v2="";}
-                if (list.get(3).get(key) != null){
-                    v3 = list.get(3).get(key).getValue();
-                } else {v3="";}
+//                if (list.get(3).get(key) != null){
+//                    v3 = list.get(3).get(key).getValue();
+//                } else {v3="";}
 
                 settingKeyValidation.setCountry("il",list.get(0).get(key).getValue());
                 settingKeyValidation.setCountry("uk",v1);
                 settingKeyValidation.setCountry("ru",v2);
-                settingKeyValidation.setCountry("us",v3);
+//                settingKeyValidation.setCountry("us",v3);
                 settingKeyValidation.setEqual(setValidation(settingKeyValidation.getExpected_value(),settingKeyValidation.getCountries()));
                 settingKeyValidationArrayList.add(settingKeyValidation);
             } catch (Exception e){
