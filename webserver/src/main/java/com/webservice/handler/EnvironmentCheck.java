@@ -20,17 +20,20 @@ public class EnvironmentCheck {
 
     public ServerDetails getServerDetailsO (String scrum, String server) {
         String url = "http://" + server + "-" + scrum + ".gett.io/alive";
+        ServerDetails serverDetails;
         try {
             URLConnection connection = new URL(url + "").openConnection();
             connection.setRequestProperty("Accept-Charset", charset);
             InputStream response = connection.getInputStream();
 //            System.out.print("#");
             System.out.print(server+"  ");
-            ServerDetails serverDetails = gson.fromJson(getStringFromInputStream(response), ServerDetails.class);
+            serverDetails = gson.fromJson(getStringFromInputStream(response), ServerDetails.class);
             serverDetails.setServer(server);
             return serverDetails;
         } catch (Exception e) {
-            return new ServerDetails();
+            serverDetails = new ServerDetails();
+            serverDetails.setServer(server);
+            return serverDetails;
         }
     }
 
