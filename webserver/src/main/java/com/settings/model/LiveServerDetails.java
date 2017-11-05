@@ -3,11 +3,20 @@ package com.settings.model;
 /**
  * Created by hagairevah on 6/2/17.
  */
-public class ServerDetails {
+public class LiveServerDetails {
     private String server;
     private boolean alive;
     private String git_revision;
     private String commit;
+    private String git_repo;
+
+    public String getGit_repo() {
+        return git_repo;
+    }
+
+    public void setGit_repo(String git_repo) {
+        this.git_repo = git_repo;
+    }
 
     public String getCommit() {
         return commit;

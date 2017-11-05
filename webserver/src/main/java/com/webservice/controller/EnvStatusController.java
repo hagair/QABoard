@@ -24,7 +24,8 @@ public class EnvStatusController {
         if (scrum.equals(null)) {
             scrum = "scrum12";
         }
-        String response = environmentCheck.getAllServersdetailsJson(scrum);
+//        String response = environmentCheck.getAllServersdetailsJson(scrum);
+        String response = environmentCheck.liveServerDetailsHashMap(scrum);
         return response;
     }
 
