@@ -29,9 +29,9 @@ public class EnvironmentCheck {
         try {
             URLConnection connection = new URL(url + "").openConnection();
             connection.setRequestProperty("Accept-Charset", charset);
+            connection.setReadTimeout(5000);
             InputStream response = connection.getInputStream();
 //            System.out.print("#");
-            System.out.print(server+"  ");
             serverDetails = gson.fromJson(getStringFromInputStream(response), LiveServerDetails.class);
             serverDetails.setServer(server);
             return serverDetails;
@@ -85,7 +85,7 @@ public String getCIServicesDataString (){
     }
 
     public String liveServerDetailsHashMap (String scrum){
-        int i = 0;
+        int i = 1;
         Map<String, LiveServerDetails> x = new HashMap<String, LiveServerDetails>();
         Map<String, CIDetails> ciDetailsMap = new HashMap<String, CIDetails>();
         String jsonString = getCIServicesDataString();
@@ -94,11 +94,12 @@ public String getCIServicesDataString (){
         Set<String>  services = ciDetailsMap.keySet();
         for (String service: services) {
             i++;
+            System.out.print(i+": "+service);
             LiveServerDetails liveServerDetails = new LiveServerDetails();
             liveServerDetails = getLiveServerDetailsO(scrum,service);
             liveServerDetails.setGit_repo(getDataFromJson(jsonString, service, "git_repo"));
             x.put(service, liveServerDetails);
-            System.out.println(i);
+            System.out.println();
         }
         return gson.toJson(x);
 
