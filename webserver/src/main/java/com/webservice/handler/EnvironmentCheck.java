@@ -29,7 +29,7 @@ public class EnvironmentCheck {
         try {
             URLConnection connection = new URL(url + "").openConnection();
             connection.setRequestProperty("Accept-Charset", charset);
-            connection.setReadTimeout(5000);
+            connection.setReadTimeout(1000);
             InputStream response = connection.getInputStream();
 //            System.out.print("#");
             serverDetails = gson.fromJson(getStringFromInputStream(response), LiveServerDetails.class);
