@@ -18,7 +18,7 @@ public class EnvStatusController {
     EnvironmentCheck environmentCheck = new EnvironmentCheck();
     SystemSettings systemSettings;
 
-    @CrossOrigin(origins = "http://localhost:7001")
+    @CrossOrigin(origins = "http://qaboard.gett.io:7001")
     @RequestMapping("/statusJson")
     public String serverStatusJ(@RequestParam("scrum") String scrum){
         if (scrum.equals(null)) {
