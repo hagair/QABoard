@@ -145,7 +145,7 @@ public class SystemSettings {
                         "</td><td>" + settingKeyValidation.getCountry("il") +
                         "</td><td>" + settingKeyValidation.getCountry("uk") +
                         "</td><td>" + settingKeyValidation.getCountry("ru");
-                if (prodSettings.size()==3){
+                if (prodSettings.size()>=3){
                         //"</td><td>" + settingKeyValidation.getCountry("us") +
                     tableString = tableString + "</td><td>"+prodSettings.get(0).get(settingKeyValidation.getKey()).getValue() +
                         "</td><td>" + prodSettings.get(1).get(settingKeyValidation.getKey()).getValue() +
@@ -173,7 +173,7 @@ public class SystemSettings {
                             "</td><td>" + settingKeyValidation.getCountry("uk") +
                             "</td><td>" + settingKeyValidation.getCountry("ru");
                             //"</td><td>" + settingKeyValidation.getCountry("us") +
-                    if (prodSettings.size()==3){
+                    if (prodSettings.size()>=3){
                         tableString = tableString +"</td><td>" + prodSettings.get(0).get(settingKeyValidation.getKey()).getValue() +
                             "</td><td>" + prodSettings.get(1).get(settingKeyValidation.getKey()).getValue() +
                             "</td><td>" + prodSettings.get(2).get(settingKeyValidation.getKey()).getValue() +
