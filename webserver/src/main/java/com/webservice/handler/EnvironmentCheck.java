@@ -24,7 +24,20 @@ public class EnvironmentCheck {
     Gson gson = new Gson();
 
     public LiveServerDetails getLiveServerDetailsO(String scrum, String server) {
-        String url = "http://" + server + "-" + scrum + ".gett.io/alive";
+        String url = "";
+        if (server.equalsIgnoreCase("osrm")) {
+            url = "http://osrm-qa.gett.io/alive";
+        }else {
+            if (server.equalsIgnoreCase("pubnub")) {
+                url = "http://pubnub-qa.gett.io/alive";
+            } else {
+                if (server.equalsIgnoreCase("relay")) {
+                    url = "http://relayscrum.gett.io/alive";
+                } else {
+                    url = "http://" + server + "-" + scrum + ".gett.io/alive";
+                }
+            }
+        }
         LiveServerDetails serverDetails;
         try {
             URLConnection connection = new URL(url + "").openConnection();
