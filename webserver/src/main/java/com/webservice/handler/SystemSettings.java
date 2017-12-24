@@ -144,14 +144,20 @@ public class SystemSettings {
                         "</td><td>" + settingKeyValidation.getExpected_value() +
                         "</td><td>" + settingKeyValidation.getCountry("il") +
                         "</td><td>" + settingKeyValidation.getCountry("uk") +
-                        "</td><td>" + settingKeyValidation.getCountry("ru") +
+                        "</td><td>" + settingKeyValidation.getCountry("ru");
+                if (prodSettings.size()==3){
                         //"</td><td>" + settingKeyValidation.getCountry("us") +
-                        "</td><td>" + prodSettings.get(0).get(settingKeyValidation.getKey()).getValue() +
+                    tableString = tableString + "</td><td>"+prodSettings.get(0).get(settingKeyValidation.getKey()).getValue() +
                         "</td><td>" + prodSettings.get(1).get(settingKeyValidation.getKey()).getValue() +
                         "</td><td>" + prodSettings.get(2).get(settingKeyValidation.getKey()).getValue() +
                         //"</td><td>" + prodSettings.get(3).get(settingKeyValidation.getKey()).getValue() +
                         "</td><td>" + settingKeyValidation.getInfo() +
-                        "</td></tr>";
+                        "</td></tr>";}
+                        else {
+                            tableString = tableString + "</td><td></td><td></td><td>"+
+                            "</td><td>" + settingKeyValidation.getInfo() +
+                            "</td></tr>";}
+
                 } catch (Exception e){
                     e.printStackTrace();
                 }
@@ -165,14 +171,19 @@ public class SystemSettings {
                             "<br><a href=http://qaboard.gett.io:8080/settings/changeScrumValues?scrum=" + scrum + "&key=" + settingKeyValidation.getKey() + "&value=" + settingKeyValidation.getExpected_value() + ">Align Values</a>" +
                             "</td><td>" + settingKeyValidation.getCountry("il") +
                             "</td><td>" + settingKeyValidation.getCountry("uk") +
-                            "</td><td>" + settingKeyValidation.getCountry("ru") +
+                            "</td><td>" + settingKeyValidation.getCountry("ru");
                             //"</td><td>" + settingKeyValidation.getCountry("us") +
-                            "</td><td>" + prodSettings.get(0).get(settingKeyValidation.getKey()).getValue() +
+                    if (prodSettings.size()==3){
+                        tableString = tableString +"</td><td>" + prodSettings.get(0).get(settingKeyValidation.getKey()).getValue() +
                             "</td><td>" + prodSettings.get(1).get(settingKeyValidation.getKey()).getValue() +
                             "</td><td>" + prodSettings.get(2).get(settingKeyValidation.getKey()).getValue() +
                             //"</td><td>" + prodSettings.get(3).get(settingKeyValidation.getKey()).getValue() +
                             "</td><td>" + settingKeyValidation.getInfo() +
-                            "</td></tr>";
+                            "</td></tr>";}
+                    else {
+                        tableString = tableString + "</td><td></td><td></td><td>"+
+                                "</td><td>" + settingKeyValidation.getInfo() +
+                                "</td></tr>";}
                 } catch (Exception e){
                     e.printStackTrace();
                 }
