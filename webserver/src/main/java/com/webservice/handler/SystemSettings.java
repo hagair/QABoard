@@ -154,7 +154,8 @@ public class SystemSettings {
                         "</td><td>" + settingKeyValidation.getInfo() +
                         "</td></tr>";}
                         else {
-                            tableString = tableString + "</td><td></td><td></td><td>"+
+                    System.out.println(prodSettings.size());
+                    tableString = tableString + "</td><td></td><td></td><td>"+
                             "</td><td>" + settingKeyValidation.getInfo() +
                             "</td></tr>";}
 
@@ -181,6 +182,7 @@ public class SystemSettings {
                             "</td><td>" + settingKeyValidation.getInfo() +
                             "</td></tr>";}
                     else {
+                        System.out.println(prodSettings.size());
                         tableString = tableString + "</td><td></td><td></td><td>"+
                                 "</td><td>" + settingKeyValidation.getInfo() +
                                 "</td></tr>";}
