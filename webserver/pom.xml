@@ -5,7 +5,7 @@
 
 	<groupId>com.springjpa</groupId>
 	<artifactId>webserver</artifactId>
-	<version>1.6.2</version>
+	<version>1.7.0</version>
 	<packaging>jar</packaging>
 
 	<name>webserver</name>
