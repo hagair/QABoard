@@ -27,7 +27,7 @@ public class SpringJpaPostgreSqlApplicationTests {
 	public void runDBConnection() {
 		String scrum = "scrum12";
 //		ResourcesHandler.setPath("debug");
-		SystemSettings systemSettings = new SystemSettings(scrum);
+		SystemSettings systemSettings = new SystemSettings(12);
 		String  html = ResourcesHandler.loadTxtFile("home.html");
 		String response = html.replace("##scrum",scrum);
 		response = response.replace("##table",systemSettings.getSettingsTableHTML("settings.properties",false));
@@ -60,7 +60,7 @@ public class SpringJpaPostgreSqlApplicationTests {
 	@Test
 	public void testProductionReplica(){
 		SystemSettingDiff systemSettingDiff = new SystemSettingDiff();
-		ArrayList<HashMap<String,SettingKey>> ss = systemSettingDiff.getDiffsFromAllProdCountries();
+		ArrayList<HashMap<String,SettingKey>> ss = systemSettingDiff.getDiffsFromAllCountries(0);
 
 		System.out.println();
 	}

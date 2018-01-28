@@ -3,6 +3,7 @@ package com.webservice.controller;
 import com.google.gson.Gson;
 import com.settings.SystemSettings.ChangeSystemSetting;
 import com.settings.model.SettingKeyValidation;
+import com.utils.ToolsMisc;
 import com.webservice.handler.SystemSettings;
 import com.utils.ResourcesHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
+import static com.utils.ToolsMisc.getScrumNumber;
+
 @RestController
 public class SettingsController {
 
@@ -27,7 +30,8 @@ public class SettingsController {
 	@CrossOrigin(origins = "http://localhost:8080")
 	@RequestMapping("/settings")
 	public String settingComperatorHTML(@RequestParam("scrum") String scrum){
-		systemSettings = new SystemSettings(scrum);
+		int i = getScrumNumber(scrum);
+		systemSettings = new SystemSettings(i);
 //		ResourcesHandler.printPath();
 		String  html = ResourcesHandler.loadTxtFile("home.html");
 		String response = html.replace("##scrum",scrum);
@@ -37,7 +41,8 @@ public class SettingsController {
 	@CrossOrigin(origins = "http://localhost:8080")
 	@RequestMapping("/Allsettings")
 	public String AllsettingComperatorHTML(@RequestParam("scrum") String scrum){
-		systemSettings = new SystemSettings(scrum);
+		int i = getScrumNumber(scrum);
+		systemSettings = new SystemSettings(i);
 //		ResourcesHandler.printPath();
 		String  html = ResourcesHandler.loadTxtFile("home.html");
 		String response = html.replace("##scrum",scrum);
@@ -52,7 +57,8 @@ public class SettingsController {
 		if (scrum.equals(null)) {
 			scrum = "scrum12";
 		}
-		systemSettings = new SystemSettings(scrum);
+		int i = getScrumNumber(scrum);
+		systemSettings = new SystemSettings(i);
 		ResourcesHandler.printPath();
 		ArrayList<SettingKeyValidation> settingKeyValidationArrayList = systemSettings.getSettingsTableJSON("settings_values_scrum12.properties");
 		String response = gson.toJson(settingKeyValidationArrayList);
@@ -120,5 +126,6 @@ public class SettingsController {
 		filecontent = filecontent.replaceAll("\n","<br>");
 		return filecontent;
 	}
+
 }
 

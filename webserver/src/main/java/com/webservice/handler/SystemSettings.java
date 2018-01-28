@@ -16,20 +16,20 @@ import java.util.Set;
  */
 public class SystemSettings {
     @Autowired
-    String scrum;
+    int scrum;
     ArrayList<HashMap<String,SettingKey>> prodSettings;
     SystemSettingDiff systemSettingDiff;
-    public SystemSettings(String scrum) {
+    public SystemSettings(int scrum) {
 
         this.scrum = scrum;
         this.systemSettingDiff = new SystemSettingDiff();
-        this.prodSettings = systemSettingDiff.getDiffsFromAllProdCountries();
+        this.prodSettings = systemSettingDiff.getDiffsFromAllCountries(0);
 
     }
 
     public String getSettingsTableHTML(String filename, boolean all){
         SystemSettingDiff systemSettingDiff = new SystemSettingDiff();
-        ArrayList<HashMap<String,SettingKey>> scrumSettings = systemSettingDiff.getDiffsFromAllScrumCountries(scrum);
+        ArrayList<HashMap<String,SettingKey>> scrumSettings = systemSettingDiff.getDiffsFromAllCountries(scrum);
         ArrayList<SettingKeyValidation> settingKeyValidationArrayList = getSettingKeyValidationList(scrumSettings,filename);
         if (all){
             settingKeyValidationArrayList.addAll(settingKeyValidationArrayList.size(),getSettingKeynonValidationList(scrumSettings,filename));
@@ -39,7 +39,7 @@ public class SystemSettings {
 
     public ArrayList<SettingKeyValidation> getSettingsTableJSON(String filename){
         SystemSettingDiff systemSettingDiff = new SystemSettingDiff();
-        ArrayList<HashMap<String,SettingKey>> ss = systemSettingDiff.getDiffsFromAllScrumCountries(scrum);
+        ArrayList<HashMap<String,SettingKey>> ss = systemSettingDiff.getDiffsFromAllCountries(scrum);
 
         return getSettingKeyValidationList(ss,filename);
     }
