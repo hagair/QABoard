@@ -169,7 +169,7 @@ public class SystemSettings {
                             "<td>" + settingKeyValidation.getModule() +
                             "</td><td>" + settingKeyValidation.getKey() +
                             "</td><td>" + settingKeyValidation.getExpected_value() +
-                            "<br><a href=http://qaboard.gett.io:8080/settings/changeScrumValues?scrum=" + scrum + "&key=" + settingKeyValidation.getKey() + "&value=" + settingKeyValidation.getExpected_value() + ">Align Values</a>" +
+                            "<br><a href=http://qaboard.gett.io:8080/settings/changeScrumValues?scrum=scrum" + scrum + "&key=" + settingKeyValidation.getKey() + "&value=" + settingKeyValidation.getExpected_value() + ">Align Values</a>" +
                             "</td><td>" + settingKeyValidation.getCountry("il") +
                             "</td><td>" + settingKeyValidation.getCountry("uk") +
                             "</td><td>" + settingKeyValidation.getCountry("ru");

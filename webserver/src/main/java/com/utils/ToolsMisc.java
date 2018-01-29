@@ -6,7 +6,7 @@ package com.utils;
 public class ToolsMisc {
 
     public static int getScrumNumber(String scrum){
-        String s = scrum.substring(5);
+         String s = scrum.substring(5);
         int i = Integer.parseInt(s);
         return i;
     }
