@@ -133,7 +133,7 @@ public class SettingsController {
 	public String cloneExpectyedValueFile(@RequestParam("source") String source,
 										  @RequestParam("dest") String dest){
 		String sourceFilename = "settings_values_"+source+".properties";
-		String destinationFilename = "settings_values_"+source+".properties";
+		String destinationFilename = "settings_values_"+dest+".properties";
 
 		String fileContent = ResourcesHandler.loadTxtFile(sourceFilename);
 		fileContent = fileContent.replaceAll(source,dest);
