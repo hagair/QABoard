@@ -15,6 +15,7 @@ import javax.ws.rs.POST;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -114,6 +115,7 @@ public class SettingsController {
 			return "You failed to upload because the file was empty.";
 		}
 	}
+
 	@RequestMapping("/settings/printFile")
 	public String printKeyValueFile(@RequestParam("scrum") String scrum){
 		if (scrum.equals(null)) {
@@ -125,6 +127,24 @@ public class SettingsController {
 				ResourcesHandler.loadTxtFile(filename)+"</body></html>";
 		filecontent = filecontent.replaceAll("\n","<br>");
 		return filecontent;
+	}
+
+	@RequestMapping("/settings/cloneFile")
+	public String cloneExpectyedValueFile(@RequestParam("source") String source,
+										  @RequestParam("dest") String dest){
+		String sourceFilename = "settings_values_"+source+".properties";
+		String destinationFilename = "settings_values_"+source+".properties";
+
+		String fileContent = ResourcesHandler.loadTxtFile(sourceFilename);
+		fileContent = fileContent.replaceAll(source,dest);
+		try {
+			ResourcesHandler.writeStringToPropertyFile(destinationFilename, fileContent);
+		} catch (IOException e) {
+			System.out.println("Write new file: "+destinationFilename+" failed!");
+			return settingComperatorHTML(source);
+//			e.printStackTrace();
+		}
+		return settingComperatorHTML(dest);
 	}
 
 }

@@ -45,6 +45,18 @@ Adding/changing expected value: choose scrum env from the following list and typ
 </form>
 </div>
 <div id="frame2">
+    <h3>Clone Expected Value file:</h3>
+    Adding/changing expected value: choose scrum env from the following list and type the key&value on the the text field.
+    <br>
+    <form action="http://qaboard.gett.io:8080/settings/cloneFile">
+        Key: <input type="text" name="source" value="" size="100px">
+        <br>
+        Value: <input type="text" name="dest" value="" size="100px">
+        <br><br>
+        <input type="submit" value="Clone">
+    </form>
+</div>
+<div id="frame3">
     <h3 id="mediaText">Upload Setting File: </h3>
     <form action="http://qaboard.gett.io:8080/settings/FileUpload" enctype="multipart/form-data" method="POST">
         Choose Scrum:

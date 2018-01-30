@@ -192,6 +192,9 @@ public class SystemSettings {
             }
 
         }
+        if (tableString==""){
+            tableString="<h2>you may not have and expected values file, please clone file on Tools link</h2>";
+        }
         return tableString;
     }
     private boolean setValidation(String expected, ArrayList<String> countries){
